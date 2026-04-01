@@ -157,29 +157,43 @@ session_start();
 
     <!-- FORM TAMBAH SEPATU — hanya tampil kalau sudah login -->
     @if(session()->has('user'))
-    <div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-between mb-3">
         <h3 class="mb-4">Tambah Sepatu</h3>
-        <div class="card p-4">
-            <form id="form-tambah">
-                <div class="mb-3">
-                    <label class="form-label">Nama Sepatu</label>
-                    <input type="text" id="input-nama" class="form-control" placeholder="Masukkan nama sepatu" required />
-                </div>
+        <a href="{{ route('products') }}" 
+   class="btn btn-primary fw-bold px-4 py-2 mt-3 shadow">
+   Lihat Semua Sepatu >>>
+</a>
+
+
+
+    </div>
+    <div class="card p-4">
+        <form action="{{ route('products.store') }}" method="POST">
+    @csrf
+            <div class="mb-3">
+                <label class="form-label">Nama Sepatu</label>
+                <input type="text" id="input-nama" name="product_name" class="form-control" placeholder="Masukkan nama sepatu" required />
+
+            </div>
                 <div class="mb-3">
                     <label class="form-label">Harga</label>
-                    <input type="number" id="input-harga" class="form-control" placeholder="Masukkan harga" required />
+                    <input type="number" id="input-harga" name="product_price" class="form-control" placeholder="Masukkan harga" required />
+
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Stok</label>
-                    <input type="number" id="input-stok" class="form-control" placeholder="Masukkan Stok" required />
+                    <input type="number" id="input-stok" name="product_stock" class="form-control" placeholder="Masukkan Stok" required />
+
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Kategori</label>
-                    <select id="input-kategori" class="form-select">
-                        <option>Running</option>
-                        <option>Basket</option>
-                        <option>Casual</option>
+                    <select id="input-kategori" name="category_id" class="form-select">
+                        <option value="">Pilih Kategori</option>
+                        @foreach ($category as $cat)
+                            <option value="{{ $cat->category_id }}">{{ $cat->category_name }}</option>
+                        @endforeach
                     </select>
+
                 </div>
                 <button type="submit" class="btn btn-success">Simpan</button>
             </form>

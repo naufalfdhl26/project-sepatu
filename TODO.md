@@ -1,0 +1,1 @@
+- [x] Step 1: Update ProductController@home to fetch and pass $category to index.blade.php view.&#10;- [x] Step 2: Edit resources/views/index.blade.php form to add correct name attributes and use dynamic category select.&#10;- [ ] Step 3: Test form submission on index page, verify DB save and redirect to product list.&#10;
